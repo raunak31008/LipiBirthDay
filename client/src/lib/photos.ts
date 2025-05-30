@@ -1,5 +1,17 @@
 // Photo data structure for the romantic birthday website
-// In a real implementation, these would be replaced with actual photos
+import soloImage1 from "@assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (1).jpeg";
+import soloImage2 from "@assets/WhatsApp Image 2025-05-30 at 5.57.45 PM.jpeg";
+import soloImage3 from "@assets/WhatsApp Image 2025-05-30 at 5.57.46 PM.jpeg";
+import soloImage4 from "@assets/WhatsApp Image 2025-05-30 at 5.57.52 PM.jpeg";
+import soloImage5 from "@assets/WhatsApp Image 2025-05-30 at 5.59.53 PM (1).jpeg";
+import soloImage6 from "@assets/WhatsApp Image 2025-05-30 at 5.59.54 PM.jpeg";
+
+import coupleImage1 from "@assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg";
+import coupleImage2 from "@assets/WhatsApp Image 2025-05-30 at 5.58.05 PM (1).jpeg";
+import coupleImage3 from "@assets/WhatsApp Image 2025-05-30 at 5.58.07 PM.jpeg";
+import coupleImage4 from "@assets/WhatsApp Image 2025-05-30 at 5.58.07 PM (1).jpeg";
+import coupleImage5 from "@assets/WhatsApp Image 2025-05-30 at 5.58.08 PM (1).jpeg";
+import coupleImage6 from "@assets/WhatsApp Image 2025-05-30 at 5.58.09 PM.jpeg";
 
 export interface Photo {
   id: string;
@@ -11,37 +23,37 @@ export interface Photo {
 export const soloPhotos: Photo[] = [
   {
     id: "solo-1",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (1).jpeg",
+    src: soloImage1,
     alt: "Beautiful portrait",
     category: "solo"
   },
   {
     id: "solo-2", 
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.45 PM.jpeg",
+    src: soloImage2,
     alt: "Elegant portrait",
     category: "solo"
   },
   {
     id: "solo-3",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.46 PM.jpeg", 
+    src: soloImage3, 
     alt: "Natural beauty portrait",
     category: "solo"
   },
   {
     id: "solo-4",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.52 PM.jpeg",
+    src: soloImage4,
     alt: "Radiant smile portrait", 
     category: "solo"
   },
   {
     id: "solo-5",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.59.53 PM (1).jpeg",
+    src: soloImage5,
     alt: "Gorgeous moment", 
     category: "solo"
   },
   {
     id: "solo-6",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.59.54 PM.jpeg",
+    src: soloImage6,
     alt: "Stunning beauty", 
     category: "solo"
   }
@@ -50,37 +62,37 @@ export const soloPhotos: Photo[] = [
 export const couplePhotos: Photo[] = [
   {
     id: "couple-1",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg",
+    src: coupleImage1,
     alt: "Romantic couple moment",
     category: "couple"
   },
   {
     id: "couple-2", 
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.05 PM (1).jpeg",
+    src: coupleImage2,
     alt: "Happy couple laughing",
     category: "couple"
   },
   {
     id: "couple-3",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.07 PM.jpeg",
+    src: coupleImage3,
     alt: "Intimate couple moment", 
     category: "couple"
   },
   {
     id: "couple-4",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.07 PM (1).jpeg",
+    src: coupleImage4,
     alt: "Couple walking together",
     category: "couple"
   },
   {
     id: "couple-5",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.08 PM (1).jpeg",
+    src: coupleImage5,
     alt: "Tender couple moment",
     category: "couple"
   },
   {
     id: "couple-6",
-    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.09 PM.jpeg",
+    src: coupleImage6,
     alt: "Romantic couple embrace",
     category: "couple"
   }
@@ -115,7 +127,7 @@ export const celebrationPhotos: Photo[] = [
 
 export const heroPhoto: Photo = {
   id: "hero",
-  src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.45 PM.jpeg",
+  src: soloImage2,
   alt: "Beautiful hero portrait",
   category: "solo"
 };
