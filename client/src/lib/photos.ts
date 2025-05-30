@@ -11,26 +11,38 @@ export interface Photo {
 export const soloPhotos: Photo[] = [
   {
     id: "solo-1",
-    src: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (1).jpeg",
     alt: "Beautiful portrait",
     category: "solo"
   },
   {
     id: "solo-2", 
-    src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.45 PM.jpeg",
     alt: "Elegant portrait",
     category: "solo"
   },
   {
     id: "solo-3",
-    src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000", 
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.46 PM.jpeg", 
     alt: "Natural beauty portrait",
     category: "solo"
   },
   {
     id: "solo-4",
-    src: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.52 PM.jpeg",
     alt: "Radiant smile portrait", 
+    category: "solo"
+  },
+  {
+    id: "solo-5",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.59.53 PM (1).jpeg",
+    alt: "Gorgeous moment", 
+    category: "solo"
+  },
+  {
+    id: "solo-6",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.59.54 PM.jpeg",
+    alt: "Stunning beauty", 
     category: "solo"
   }
 ];
@@ -38,37 +50,37 @@ export const soloPhotos: Photo[] = [
 export const couplePhotos: Photo[] = [
   {
     id: "couple-1",
-    src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg",
     alt: "Romantic couple moment",
     category: "couple"
   },
   {
     id: "couple-2", 
-    src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.05 PM (1).jpeg",
     alt: "Happy couple laughing",
     category: "couple"
   },
   {
     id: "couple-3",
-    src: "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.07 PM.jpeg",
     alt: "Intimate couple moment", 
     category: "couple"
   },
   {
     id: "couple-4",
-    src: "https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.07 PM (1).jpeg",
     alt: "Couple walking together",
     category: "couple"
   },
   {
     id: "couple-5",
-    src: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.08 PM (1).jpeg",
     alt: "Tender couple moment",
     category: "couple"
   },
   {
     id: "couple-6",
-    src: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&h=600",
+    src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.58.09 PM.jpeg",
     alt: "Romantic couple embrace",
     category: "couple"
   }
@@ -103,7 +115,7 @@ export const celebrationPhotos: Photo[] = [
 
 export const heroPhoto: Photo = {
   id: "hero",
-  src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080",
+  src: "/attached_assets/WhatsApp Image 2025-05-30 at 5.57.45 PM.jpeg",
   alt: "Beautiful hero portrait",
   category: "solo"
 };
