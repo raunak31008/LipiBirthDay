@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday My Love</title>
+    <meta name="description" content="A romantic birthday celebration website filled with love, beautiful memories, and heartfelt wishes for the most amazing woman in the world.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/lucide-react@0.263.1/dist/umd/lucide-react.js"></script>
+    <style>
+      /* Custom romantic styles */
+      :root {
+        --romantic-pink: 340 82% 75%;
+        --soft-blush: 340 50% 95%;
+        --warm-white: 340 100% 98%;
+        --deep-pink: 340 82% 52%;
+        --accent-pink: 320 100% 70%;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, hsl(var(--warm-white)) 0%, hsl(var(--soft-blush)) 100%);
+        min-height: 100vh;
+      }
+      
+      .font-playfair {
+        font-family: 'Playfair Display', serif;
+      }
+      
+      .romantic-gradient {
+        background: linear-gradient(135deg, hsl(var(--romantic-pink)) 0%, hsl(var(--accent-pink)) 100%);
+      }
+      
+      .photo-hover {
+        transition: all 0.3s ease;
+      }
+      
+      .photo-hover:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      }
+      
+      .animate-fade-in {
+        animation: fadeIn 0.6s ease-in-out;
+      }
+      
+      .animate-slide-up {
+        animation: slideUp 0.8s ease-out;
+      }
+      
+      .animate-gentle-bounce {
+        animation: gentleBounce 2s ease-in-out infinite;
+      }
+      
+      .modal-backdrop {
+        -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      @keyframes slideUp {
+        from { transform: translateY(30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      
+      @keyframes gentleBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .emoji-reaction {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        font-size: 2rem;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+                user-select: none;
+      }
+      
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) scale(0.5);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-50vh) scale(1.2);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-100vh) scale(0.8);
+          opacity: 0;
+        }
+      }
+      
+      .floating-emoji {
+        animation: floatUp 3s ease-out forwards;
+      }
+      
+      .love-reaction-panel {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+        border-radius: 50px;
+        padding: 10px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        z-index: 1000;
+        display: flex;
+        gap: 8px;
+        transition: all 0.3s ease;
+      }
+      
+      .love-reaction-panel:hover {
+        transform: scale(1.05);
+      }
+      
+      .emoji-button {
+        width: 50px;
+        height: 50px;
+        border: none;
+        background: transparent;
+        font-size: 24px;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .emoji-button:hover {
+        background: rgba(255, 182, 193, 0.3);
+        transform: scale(1.2);
+      }
+      
+      .emoji-button:active {
+        transform: scale(0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+      const { motion, AnimatePresence } = Motion;
+      const { Heart, Menu, X, ChevronLeft, ChevronRight, Play, Star, Infinity, Cake, Gift, Sparkles, Calendar, Laugh, Users, MapPin, ArrowRight } = lucideReact;
+
+      // Photo data - replace these URLs with your actual photo/video URLs
+      const photoData = {
+        soloPhotos: [
+          { id: "solo-1", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (1).jpeg", alt: "Beautiful portrait", category: "solo", type: "image" },
+          { id: "solo-2", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.57.45 PM.jpeg", alt: "Elegant portrait", category: "solo", type: "image" },
+          { id: "solo-3", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.57.46 PM.jpeg", alt: "Natural beauty portrait", category: "solo", type: "image" },
+          { id: "solo-4", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.57.52 PM.jpeg", alt: "Radiant smile portrait", category: "solo", type: "image" },
+          { id: "solo-5", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.59.53 PM (1).jpeg", alt: "Gorgeous moment", category: "solo", type: "image" },
+          { id: "solo-6", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.59.54 PM.jpeg", alt: "Stunning beauty", category: "solo", type: "image" },
+          { id: "solo-7", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.57.43 PM.jpeg", alt: "Lovely portrait", category: "solo", type: "image" },
+          { id: "solo-8", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (2).jpeg", alt: "Beautiful moment", category: "solo", type: "image" },
+          { id: "solo-9", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.59.46 PM (1).jpeg", alt: "Sweet smile", category: "solo", type: "image" },
+          { id: "solo-10", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.59.46 PM (2).jpeg", alt: "Charming portrait", category: "solo", type: "image" },
+          { id: "solo-11", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.59.52 PM.jpeg", alt: "Radiant beauty", category: "solo", type: "image" },
+          { id: "solo-12", src: "./attached_assets/04f609b0-44d6-41e2-b07a-0eb55ae21c12.jpeg", alt: "Perfect moment", category: "solo", type: "image" },
+          { id: "solo-video-1", src: "./attached_assets/WhatsApp Video 2025-05-30 at 5.57.47 PM.mp4", alt: "Beautiful video moment", category: "solo", type: "video" },
+          { id: "solo-video-2", src: "./attached_assets/WhatsApp Video 2025-05-30 at 5.57.49 PM (1).mp4", alt: "Sweet video", category: "solo", type: "video" },
+          { id: "solo-video-3", src: "./attached_assets/WhatsApp Video 2025-05-30 at 5.57.55 PM.mp4", alt: "Lovely video moment", category: "solo", type: "video" }
+        ],
+        couplePhotos: [
+          { id: "couple-1", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg", alt: "Romantic couple moment", category: "couple", type: "image" },
+          { id: "couple-2", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.05 PM (1).jpeg", alt: "Happy couple laughing", category: "couple", type: "image" },
+          { id: "couple-3", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.07 PM.jpeg", alt: "Intimate couple moment", category: "couple", type: "image" },
+          { id: "couple-4", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.07 PM (1).jpeg", alt: "Couple walking together", category: "couple", type: "image" },
+          { id: "couple-5", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.08 PM (1).jpeg", alt: "Tender couple moment", category: "couple", type: "image" },
+          { id: "couple-6", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.09 PM.jpeg", alt: "Romantic couple embrace", category: "couple", type: "image" },
+          { id: "couple-video-1", src: "./attached_assets/WhatsApp Video 2025-05-30 at 5.58.00 PM.mp4", alt: "Beautiful couple video", category: "couple", type: "video" },
+          { id: "couple-video-2", src: "./attached_assets/WhatsApp Video 2025-05-30 at 5.58.03 PM.mp4", alt: "Sweet moments together", category: "couple", type: "video" },
+          { id: "couple-video-3", src: "./attached_assets/WhatsApp Video 2025-05-30 at 5.58.10 PM.mp4", alt: "Love in motion", category: "couple", type: "video" }
+        ],
+        celebrationPhotos: [
+          { id: "celebration-1", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.59.46 PM (1).jpeg", alt: "Birthday celebration moment", category: "celebration", type: "image" },
+          { id: "celebration-2", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.59.46 PM (2).jpeg", alt: "Special birthday moment", category: "celebration", type: "image" },
+          { id: "celebration-3", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg", alt: "Celebrating together", category: "celebration", type: "image" },
+          { id: "celebration-4", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.05 PM (1).jpeg", alt: "Birthday joy", category: "celebration", type: "image" },
+          { id: "celebration-video-1", src: "./attached_assets/WhatsApp Video 2025-05-30 at 5.59.50 PM.mp4", alt: "Special birthday video moment", category: "celebration", type: "video" }
+        ],
+        heroPhoto: { id: "hero", src: "./attached_assets/WhatsApp Image 2025-05-30 at 5.57.45 PM.jpeg", alt: "Beautiful hero portrait", category: "solo" }
+      };
+
+      // Global lightbox state
+      let globalLightboxState = {
+        isOpen: false,
+        currentPhoto: null,
+        photos: [],
+        setters: []
+      };
+
+      // Love reaction system
+      const loveEmojis = ['💖', '💕', '💗', '💝', '😘', '🥰', '😍', '💋', '🌹', '💐', '✨', '🎀'];
+      
+      const createEmojiReaction = (emoji, x, y) => {
+        const emojiElement = document.createElement('div');
+        emojiElement.textContent = emoji;
+        emojiElement.className = 'emoji-reaction floating-emoji';
+        emojiElement.style.left = x + 'px';
+        emojiElement.style.top = y + 'px';
+        emojiElement.style.left = (x + Math.random() * 100 - 50) + 'px';
+        
+        document.body.appendChild(emojiElement);
+        
+        setTimeout(() => {
+          if (emojiElement && emojiElement.parentNode) {
+            emojiElement.parentNode.removeChild(emojiElement);
+          }
+        }, 3000);
+      };
+
+      const triggerEmojiReaction = (emoji) => {
+        // Create multiple emojis for more effect
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = window.innerHeight - 100;
+            createEmojiReaction(emoji, x, y);
+          }, i * 200);
+        }
+      };
+
+      // Auto love emojis that appear randomly
+      const startAutoLoveEmojis = () => {
+        setInterval(() => {
+          if (Math.random() < 0.3) { // 30% chance every 5 seconds
+            const randomEmoji = loveEmojis[Math.floor(Math.random() * loveEmojis.length)];
+            const x = Math.random() * window.innerWidth;
+            const y = window.innerHeight;
+            createEmojiReaction(randomEmoji, x, y);
+          }
+        }, 5000);
+      };
+
+      // Start auto emojis when page loads
+      setTimeout(startAutoLoveEmojis, 3000);
+
+      const useLightbox = () => {
+        const [state, setState] = useState(globalLightboxState);
+
+        useEffect(() => {
+          globalLightboxState.setters.push(setState);
+          return () => {
+            globalLightboxState.setters = globalLightboxState.setters.filter(s => s !== setState);
+          };
+        }, []);
+
+        const openLightbox = (photo, photos = [photo]) => {
+          globalLightboxState = {
+            ...globalLightboxState,
+            isOpen: true,
+            currentPhoto: photo,
+            photos
+          };
+          globalLightboxState.setters.forEach(setter => setter(globalLightboxState));
+          document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+          globalLightboxState = {
+            ...globalLightboxState,
+            isOpen: false,
+            currentPhoto: null
+          };
+          globalLightboxState.setters.forEach(setter => setter(globalLightboxState));
+          document.body.style.overflow = '';
+        };
+
+        const nextPhoto = () => {
+          if (globalLightboxState.photos.length <= 1) return;
+          const currentIndex = globalLightboxState.photos.findIndex(p => p.id === globalLightboxState.currentPhoto?.id);
+          const nextIndex = (currentIndex + 1) % globalLightboxState.photos.length;
+          globalLightboxState = {
+            ...globalLightboxState,
+            currentPhoto: globalLightboxState.photos[nextIndex]
+          };
+          globalLightboxState.setters.forEach(setter => setter(globalLightboxState));
+        };
+
+        const previousPhoto = () => {
+          if (globalLightboxState.photos.length <= 1) return;
+          const currentIndex = globalLightboxState.photos.findIndex(p => p.id === globalLightboxState.currentPhoto?.id);
+          const prevIndex = currentIndex === 0 ? globalLightboxState.photos.length - 1 : currentIndex - 1;
+          globalLightboxState = {
+            ...globalLightboxState,
+            currentPhoto: globalLightboxState.photos[prevIndex]
+          };
+          globalLightboxState.setters.forEach(setter => setter(globalLightboxState));
+        };
+
+        return {
+          ...state,
+          openLightbox,
+          closeLightbox,
+          nextPhoto,
+          previousPhoto
+        };
+      };
+
+      // Love Reaction Panel Component
+      const LoveReactionPanel = () => {
+        const reactionEmojis = ['💖', '💕', '😘', '🥰', '😍', '💋', '🌹', '✨'];
+        const [isExpanded, setIsExpanded] = useState(false);
+        
+        return React.createElement("div", {
+          className: "love-reaction-panel"
+        }, [
+          React.createElement("button", {
+            key: "toggle",
+            className: "emoji-button",
+            onClick: () => setIsExpanded(!isExpanded),
+            title: "Love Reactions"
+          }, "💕"),
+          isExpanded && reactionEmojis.map((emoji, index) =>
+            React.createElement(motion.button, {
+              key: index,
+              className: "emoji-button",
+              onClick: () => {
+                triggerEmojiReaction(emoji);
+                // Create celebration burst
+                setTimeout(() => triggerEmojiReaction(emoji), 300);
+              },
+              title: `Send ${emoji}`,
+              initial: { scale: 0, opacity: 0 },
+              animate: { scale: 1, opacity: 1 },
+              transition: { delay: index * 0.1 },
+              whileHover: { scale: 1.3 },
+              whileTap: { scale: 0.8 }
+            }, emoji)
+          )
+        ]);
+      };
+
+      // Components
+      const PhotoCard = ({ src, alt, onClick, aspectRatio = "portrait", type = "image" }) => {
+        const aspectClasses = {
+          square: "aspect-square",
+          portrait: "aspect-[4/5]",
+          landscape: "aspect-[3/2]"
+        };
+
+        const handleDoubleClick = (e) => {
+          // Create heart reaction on double click
+          const rect = e.currentTarget.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+          createEmojiReaction('💖', x, y);
+        };
+
+        return React.createElement(motion.div, {
+          className: `photo-hover rounded-2xl overflow-hidden shadow-lg cursor-pointer relative ${aspectClasses[aspectRatio]}`,
+          onClick: onClick,
+          onDoubleClick: handleDoubleClick,
+          whileHover: { scale: 1.05 },
+          whileTap: { scale: 0.98 },
+          initial: { opacity: 0, y: 20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.3 }
+        }, 
+          type === "video" ? [
+            React.createElement("video", {
+              key: "video",
+              src: src,
+              className: `w-full h-full object-cover`,
+              muted: true,
+              playsInline: true,
+              preload: "metadata"
+            }),
+            React.createElement("div", {
+              key: "overlay",
+              className: "absolute inset-0 flex items-center justify-center bg-black/20"
+            },
+              React.createElement("div", {
+                className: "w-16 h-16 bg-white/90 rounded-full flex items-center justify-center"
+              },
+                React.createElement(Play, {
+                  className: "w-8 h-8 text-pink-600 ml-1"
+                })
+              )
+            )
+          ] : React.createElement("img", {
+            src: src,
+            alt: alt,
+            className: `w-full h-full object-cover`,
+            loading: "lazy"
+          })
+        );
+      };
+
+      const PhotoGallery = ({ photos, title, subtitle, onPhotoClick, columns = 3 }) => {
+        const gridCols = {
+          2: "grid-cols-1 md:grid-cols-2",
+          3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+          4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+        };
+
+        return React.createElement("section", {
+          className: "py-16 px-4 sm:px-6 lg:px-8"
+        },
+          React.createElement("div", {
+            className: "max-w-6xl mx-auto"
+          }, [
+            React.createElement(motion.div, {
+              key: "header",
+              className: "text-center mb-12",
+              initial: { opacity: 0, y: 30 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.6 }
+            }, [
+              React.createElement("h2", {
+                key: "title",
+                className: "font-playfair text-3xl sm:text-4xl font-bold text-gray-800 mb-4"
+              }, title),
+              subtitle && React.createElement("p", {
+                key: "subtitle",
+                className: "text-lg text-gray-600 max-w-2xl mx-auto"
+              }, subtitle)
+            ]),
+            React.createElement(motion.div, {
+              key: "grid",
+              className: `grid ${gridCols[columns]} gap-6`,
+              initial: { opacity: 0 },
+              animate: { opacity: 1 },
+              transition: { duration: 0.8, delay: 0.2 }
+            },
+              photos.map((photo, index) =>
+                React.createElement(motion.div, {
+                  key: photo.id,
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 0.5, delay: index * 0.1 }
+                },
+                  React.createElement(PhotoCard, {
+                    src: photo.src,
+                    alt: photo.alt,
+                    onClick: () => onPhotoClick(photo),
+                    aspectRatio: photo.category === "couple" ? "landscape" : "portrait",
+                    type: photo.type
+                  })
+                )
+              )
+            )
+          ])
+        );
+      };
+
+      const PhotoLightbox = () => {
+        const { isOpen, currentPhoto, photos, closeLightbox, nextPhoto, previousPhoto } = useLightbox();
+
+        useEffect(() => {
+          const handleKeyDown = (e) => {
+            if (!isOpen) return;
+            
+            switch (e.key) {
+              case 'Escape':
+                closeLightbox();
+                break;
+              case 'ArrowLeft':
+                previousPhoto();
+                break;
+              case 'ArrowRight':
+                nextPhoto();
+                break;
+            }
+          };
+
+          document.addEventListener('keydown', handleKeyDown);
+          return () => document.removeEventListener('keydown', handleKeyDown);
+        }, [isOpen, closeLightbox, nextPhoto, previousPhoto]);
+
+        if (!currentPhoto) return null;
+
+        return React.createElement(AnimatePresence, null,
+          isOpen && React.createElement(motion.div, {
+            className: "fixed inset-0 z-50 flex items-center justify-center",
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            exit: { opacity: 0 },
+            transition: { duration: 0.3 }
+          }, [
+            React.createElement(motion.div, {
+              key: "backdrop",
+              className: "absolute inset-0 bg-black/80 modal-backdrop",
+              onClick: closeLightbox,
+              initial: { opacity: 0 },
+              animate: { opacity: 1 },
+              exit: { opacity: 0 }
+            }),
+            React.createElement("div", {
+              key: "content",
+              className: "relative z-10 max-w-4xl max-h-full p-4"
+            }, [
+              React.createElement("button", {
+                key: "close",
+                className: "absolute -top-12 right-0 text-white hover:text-pink-300 z-20 p-2",
+                onClick: closeLightbox
+              }, React.createElement(X, { className: "w-6 h-6" })),
+              photos.length > 1 && [
+                React.createElement("button", {
+                  key: "prev",
+                  className: "absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-pink-300 z-20 p-2",
+                  onClick: previousPhoto
+                }, React.createElement(ChevronLeft, { className: "w-8 h-8" })),
+                React.createElement("button", {
+                  key: "next",
+                  className: "absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-pink-300 z-20 p-2",
+                  onClick: nextPhoto
+                }, React.createElement(ChevronRight, { className: "w-8 h-8" }))
+              ],
+              currentPhoto.type === "video" ?
+                React.createElement(motion.video, {
+                  key: currentPhoto.id,
+                  src: currentPhoto.src,
+                  className: "max-w-full max-h-full object-contain rounded-lg shadow-2xl",
+                  controls: true,
+                  autoPlay: true,
+                  initial: { scale: 0.8, opacity: 0 },
+                  animate: { scale: 1, opacity: 1 },
+                  exit: { scale: 0.8, opacity: 0 },
+                  transition: { duration: 0.3 }
+                }) :
+                React.createElement(motion.img, {
+                  key: currentPhoto.id,
+                  src: currentPhoto.src,
+                  alt: currentPhoto.alt,
+                  className: "max-w-full max-h-full object-contain rounded-lg shadow-2xl",
+                  initial: { scale: 0.8, opacity: 0 },
+                  animate: { scale: 1, opacity: 1 },
+                  exit: { scale: 0.8, opacity: 0 },
+                  transition: { duration: 0.3 }
+                })
+            ])
+          ])
+        );
+      };
+
+      const Navigation = ({ currentPage, setCurrentPage }) => {
+        const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+        const navItems = [
+          { id: "home", label: "Home" },
+          { id: "wishes", label: "Birthday Wishes" },
+          { id: "about", label: "About Us" }
+        ];
+
+        return React.createElement("nav", {
+          className: "fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-pink-200"
+        },
+          React.createElement("div", {
+            className: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+          },
+            React.createElement("div", {
+              className: "flex justify-between items-center h-16"
+            }, [
+              React.createElement("div", {
+                key: "logo",
+                className: "font-playfair text-xl font-semibold text-pink-600 flex items-center gap-2 cursor-pointer",
+                onClick: () => setCurrentPage("home")
+              }, [
+                React.createElement(Heart, { key: "icon", className: "w-5 h-5" }),
+                "My Beautiful Love"
+              ]),
+              React.createElement("div", {
+                key: "desktop-nav",
+                className: "hidden md:flex space-x-8"
+              },
+                navItems.map(item =>
+                  React.createElement("button", {
+                    key: item.id,
+                    className: `transition-colors duration-200 ${
+                      currentPage === item.id
+                        ? "text-pink-600 font-semibold"
+                        : "text-gray-700 hover:text-pink-600"
+                    }`,
+                    onClick: () => setCurrentPage(item.id)
+                  }, item.label)
+                )
+              ),
+              React.createElement("button", {
+                key: "mobile-menu",
+                className: "md:hidden p-2",
+                onClick: () => setIsMobileMenuOpen(!isMobileMenuOpen)
+              },
+                isMobileMenuOpen ?
+                  React.createElement(X, { className: "w-5 h-5" }) :
+                  React.createElement(Menu, { className: "w-5 h-5" })
+              )
+            ]),
+            isMobileMenuOpen && React.createElement("div", {
+              className: "md:hidden bg-white border-t border-pink-200"
+            },
+              React.createElement("div", {
+                className: "px-4 py-2 space-y-2"
+              },
+                navItems.map(item =>
+                  React.createElement("button", {
+                    key: item.id,
+                    className: `block w-full text-left py-2 transition-colors duration-200 ${
+                      currentPage === item.id
+                        ? "text-pink-600 font-semibold"
+                        : "text-gray-700 hover:text-pink-600"
+                    }`,
+                    onClick: () => {
+                      setCurrentPage(item.id);
+                      setIsMobileMenuOpen(false);
+                    }
+                  }, item.label)
+                )
+              )
+            )
+          )
+        );
+      };
+
+      const Home = () => {
+        const { openLightbox } = useLightbox();
+
+        return React.createElement("div", {
+          className: "pt-16"
+        }, [
+          // Hero Section
+          React.createElement("section", {
+            key: "hero",
+            className: "relative min-h-screen flex items-center justify-center overflow-hidden"
+          }, [
+            React.createElement("div", {
+              key: "bg",
+              className: "absolute inset-0 z-0"
+            }, [
+              React.createElement("img", {
+                key: "img",
+                src: photoData.heroPhoto.src,
+                alt: photoData.heroPhoto.alt,
+                className: "w-full h-full object-cover"
+              }),
+              React.createElement("div", {
+                key: "overlay",
+                className: "absolute inset-0 bg-gradient-to-r from-pink-500/30 to-purple-500/30"
+              })
+            ]),
+            React.createElement(motion.div, {
+              key: "content",
+              className: "relative z-10 text-center px-4 sm:px-6 lg:px-8",
+              initial: { opacity: 0, y: 30 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.8 }
+            }, [
+              React.createElement(motion.h1, {
+                key: "title",
+                className: "font-playfair text-4xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight",
+                initial: { opacity: 0, y: 20 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.8, delay: 0.2 }
+              }, [
+                "Happy Birthday,",
+                React.createElement("br", { key: "br" }),
+                React.createElement(motion.span, {
+                  key: "beautiful",
+                  className: "text-pink-300 inline-block",
+                  animate: { y: [0, -10, 0] },
+                  transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                }, "Beautiful")
+              ]),
+              React.createElement(motion.p, {
+                key: "subtitle",
+                className: "text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed",
+                initial: { opacity: 0, y: 20 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.8, delay: 0.4 }
+              }, "Today we celebrate the most amazing woman in the world. Your beauty, inside and out, lights up my entire universe."),
+              React.createElement(motion.div, {
+                key: "button",
+                initial: { opacity: 0, y: 20 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.8, delay: 0.6 }
+              },
+                React.createElement("button", {
+                  className: "romantic-gradient text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 mx-auto",
+                  onClick: () => {
+                    // Trigger celebration burst when navigating to wishes
+                    triggerEmojiReaction('🎉');
+                    setTimeout(() => triggerEmojiReaction('💖'), 200);
+                    setTimeout(() => triggerEmojiReaction('✨'), 400);
+                    setCurrentPage("wishes");
+                  }
+                }, [
+                  "See Your Birthday Wishes",
+                  React.createElement(Heart, { key: "heart", className: "w-5 h-5" })
+                ])
+              )
+            ])
+          ]),
+          // Solo Photos Gallery
+          React.createElement(PhotoGallery, {
+            key: "solo-gallery",
+            photos: photoData.soloPhotos,
+            title: "Celebrating You",
+            subtitle: "Every photo tells a story of your incredible beauty and the joy you bring to my life",
+            onPhotoClick: (photo) => openLightbox(photo, photoData.soloPhotos),
+            columns: 3
+          }),
+          // Couple Photos Gallery
+          React.createElement(PhotoGallery, {
+            key: "couple-gallery",
+            photos: photoData.couplePhotos,
+            title: "Our Beautiful Moments",
+            subtitle: "Every moment with you is a treasure that I hold close to my heart",
+            onPhotoClick: (photo) => openLightbox(photo, photoData.couplePhotos),
+            columns: 2
+          })
+        ]);
+      };
+
+      const BirthdayWishes = () => {
+        const { openLightbox } = useLightbox();
+        
+        const birthdayMessages = [
+          {
+            icon: Heart,
+            title: "Your Beauty Illuminates My World",
+            content: "Every day I wake up grateful for the privilege of loving someone as extraordinary as you. Your smile lights up the darkest days, your laughter is the most beautiful melody I've ever heard, and your heart is the most precious gift I've ever received. On your birthday, I want you to know that you are not just beautiful on the outside, but your soul radiates a beauty that takes my breath away."
+          },
+          {
+            icon: Star,
+            title: "My Wishes for Your Special Year",
+            content: "As you blow out your candles today, I wish for all your dreams to come true and for our love to grow even stronger. May this new year of your life be filled with adventures, laughter, and moments that make your heart sing. I promise to be by your side through every celebration, every challenge, and every beautiful ordinary day. You deserve all the happiness in the world, my love."
+          },
+          {
+            icon: Infinity,
+            title: "Forever and Always",
+            content: "Today isn't just about celebrating your birthday—it's about celebrating the incredible woman who has transformed my life in the most beautiful ways. You've taught me what true love feels like, what it means to have a partner who supports and believes in you unconditionally. I love you more than words could ever express, and I'm excited to create many more birthday memories together. Here's to you, my beautiful angel, today and always."
+          }
+        ];
+
+        return React.createElement("div", {
+          className: "pt-24 pb-16"
+        }, [
+          React.createElement("div", {
+            key: "content",
+            className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+          }, [
+            React.createElement(motion.div, {
+              key: "header",
+              className: "text-center mb-16",
+              initial: { opacity: 0, y: 30 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.6 }
+            }, [
+              React.createElement("h1", {
+                key: "title",
+                className: "font-playfair text-4xl sm:text-5xl font-bold text-gray-800 mb-6"
+              }, "Birthday Wishes for My Angel"),
+              React.createElement("p", {
+                key: "subtitle",
+                className: "text-lg text-gray-600 max-w-2xl mx-auto"
+              }, "Every word comes from the depths of my heart, celebrating the incredible woman you are")
+            ]),
+            React.createElement(motion.div, {
+              key: "countdown",
+              className: "romantic-gradient rounded-3xl p-8 mb-16 text-center text-white shadow-xl",
+              initial: { opacity: 0, scale: 0.9 },
+              animate: { opacity: 1, scale: 1 },
+              transition: { duration: 0.6, delay: 0.2 }
+            }, [
+              React.createElement("div", {
+                key: "title-row",
+                className: "flex items-center justify-center gap-2 mb-4"
+              }, [
+                React.createElement(Cake, { key: "cake", className: "w-6 h-6" }),
+                React.createElement("h2", {
+                  key: "title",
+                  className: "font-playfair text-2xl font-semibold"
+                }, "It's Your Special Day!"),
+                React.createElement(Sparkles, { key: "sparkles", className: "w-6 h-6" })
+              ]),
+              React.createElement("p", {
+                key: "text",
+                className: "text-lg opacity-90"
+              }, "Today marks another year of your beautiful existence, and I'm so grateful to celebrate it with you")
+            ]),
+            React.createElement("div", {
+              key: "messages",
+              className: "space-y-12 mb-16"
+            },
+              birthdayMessages.map((message, index) =>
+                React.createElement(motion.div, {
+                  key: index,
+                  className: "shadow-lg border border-pink-200/50 overflow-hidden rounded-lg bg-white",
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 0.6, delay: 0.1 * index }
+                },
+                  React.createElement("div", {
+                    className: "p-8 cursor-pointer",
+                    onClick: () => {
+                      // Create love reaction when clicking on birthday messages
+                      const emojis = ['💖', '💕', '🥰'];
+                      const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                      triggerEmojiReaction(randomEmoji);
+                    }
+                  },
+                    React.createElement("div", {
+                      className: "flex items-start space-x-4"
+                    }, [
+                      React.createElement("div", {
+                        key: "icon",
+                        className: "flex-shrink-0"
+                      },
+                        React.createElement("div", {
+                          className: "w-12 h-12 romantic-gradient rounded-full flex items-center justify-center"
+                        },
+                          React.createElement(message.icon, {
+                            className: "w-6 h-6 text-white"
+                          })
+                        )
+                      ),
+                      React.createElement("div", {
+                        key: "content",
+                        className: "flex-1"
+                      }, [
+                        React.createElement("h3", {
+                          key: "title",
+                          className: "font-playfair text-xl font-semibold text-gray-800 mb-3"
+                        }, message.title),
+                        React.createElement("p", {
+                          key: "text",
+                          className: "text-gray-600 leading-relaxed"
+                        }, message.content)
+                      ])
+                    ])
+                  )
+                )
+              )
+            ),
+            React.createElement(motion.div, {
+              key: "personal-message",
+              className: "bg-gradient-to-r from-pink-50 to-purple-50 rounded-3xl p-8 mb-16 border border-pink-200/50",
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.6, delay: 0.4 }
+            },
+              React.createElement("div", {
+                className: "text-center"
+              }, [
+                React.createElement(Gift, {
+                  key: "icon",
+                  className: "w-12 h-12 text-pink-600 mx-auto mb-4"
+                }),
+                React.createElement("h3", {
+                  key: "title",
+                  className: "font-playfair text-2xl font-semibold text-gray-800 mb-4"
+                }, "A Special Message Just for You"),
+                React.createElement("p", {
+                  key: "text",
+                  className: "text-gray-700 leading-relaxed max-w-3xl mx-auto"
+                }, "My dearest love, on this special day, I want you to know that you are the most incredible gift life has ever given me. Your kindness, your strength, your beautiful spirit, and your loving heart make every day brighter. I am so proud to love you and be loved by you. May this birthday be the beginning of a year filled with all the joy, love, and dreams coming true that you so richly deserve. Happy birthday, my beautiful angel. I love you more than all the stars in the sky.")
+              ])
+            )
+          ]),
+          React.createElement(PhotoGallery, {
+            key: "celebration-gallery",
+            photos: photoData.celebrationPhotos,
+            title: "Celebrating You Today",
+            subtitle: "Beautiful moments from your special day and birthday celebrations",
+            onPhotoClick: (photo) => openLightbox(photo, photoData.celebrationPhotos),
+            columns: 2
+          })
+        ]);
+      };
+
+      const AboutUs = () => {
+        const loveStoryMilestones = [
+          {
+            icon: Heart,
+            title: "The Day We Met",
+            description: "I still remember the moment our eyes first met. Time seemed to stop, and I knew in that instant that you were someone special. Your smile was like sunshine breaking through clouds, and your laugh became my favorite sound in the world. That day changed everything for me.",
+            date: "The beginning of forever",
+            image: "./attached_assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (1).jpeg"
+          },
+          {
+            icon: Calendar,
+            title: "Our First Date",
+            description: "Nervous butterflies, endless conversations, and the realization that I could talk to you for hours and never get bored. That first date was magical—not because of where we went, but because of how comfortable and happy you made me feel. I knew I wanted many more evenings like that one.",
+            date: "The night that sealed our fate",
+            image: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg"
+          },
+          {
+            icon: Infinity,
+            title: "Becoming Official",
+            description: "The moment we decided to make it official was one of the happiest days of my life. No more wondering, no more uncertainty—just the beautiful commitment to explore this incredible connection together. You said yes to being mine, and I've been grateful every day since.",
+            date: "The start of our official journey",
+            image: "./attached_assets/WhatsApp Image 2025-05-30 at 5.58.07 PM.jpeg"
+          }
+        ];
+
+        const specialQualities = [
+          {
+            icon: Laugh,
+            title: "We Laugh Together",
+            description: "Your sense of humor is one of the things I love most about you. We can turn even the most ordinary moments into something fun and memorable."
+          },
+          {
+            icon: Users,
+            title: "We Support Each Other",
+            description: "Through every challenge and every dream, we're each other's biggest cheerleaders. Your support gives me strength I never knew I had."
+          },
+          {
+            icon: MapPin,
+            title: "We Adventure Together",
+            description: "Every adventure is better with you by my side. Whether we're exploring new places or finding magic in familiar ones, you make every moment special."
+          },
+          {
+            icon: Star,
+            title: "We Love Deeply",
+            description: "Our love grows stronger every day. It's in the big gestures and the little moments, in the way you look at me and the way you make me feel completely loved."
+          }
+        ];
+
+        return React.createElement("div", {
+          className: "pt-24 pb-16"
+        },
+          React.createElement("div", {
+            className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+          }, [
+            React.createElement(motion.div, {
+              key: "header",
+              className: "text-center mb-16",
+              initial: { opacity: 0, y: 30 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.6 }
+            }, [
+              React.createElement("h1", {
+                key: "title",
+                className: "font-playfair text-4xl sm:text-5xl font-bold text-gray-800 mb-6"
+              }, "Our Love Story"),
+              React.createElement("p", {
+                key: "subtitle",
+                className: "text-lg text-gray-600 max-w-2xl mx-auto"
+              }, "The beautiful journey of two hearts finding their home in each other")
+            ]),
+            React.createElement("div", {
+              key: "milestones",
+              className: "space-y-12 mb-16"
+            },
+              loveStoryMilestones.map((milestone, index) =>
+                React.createElement(motion.div, {
+                  key: index,
+                  className: "relative",
+                  initial: { opacity: 0, x: index % 2 === 0 ? -20 : 20 },
+                  animate: { opacity: 1, x: 0 },
+                  transition: { duration: 0.6, delay: 0.1 * index }
+                },
+                  React.createElement("div", {
+                    className: "flex items-center space-x-6"
+                  }, [
+                    React.createElement("div", {
+                      key: "icon",
+                      className: "flex-shrink-0"
+                    },
+                      React.createElement("div", {
+                        className: "w-16 h-16 romantic-gradient rounded-full flex items-center justify-center shadow-lg"
+                      },
+                        React.createElement(milestone.icon, {
+                          className: "w-8 h-8 text-white"
+                        })
+                      )
+                    ),
+                    React.createElement("div", {
+                      key: "card",
+                      className: "flex-1 shadow-lg border border-pink-200/50 rounded-lg bg-white"
+                    },
+                      React.createElement("div", {
+                        className: "p-6"
+                      },
+                        React.createElement("div", {
+                          className: "flex flex-col md:flex-row md:items-center md:space-x-6"
+                        }, [
+                          React.createElement("div", {
+                            key: "content",
+                            className: "flex-1 mb-4 md:mb-0"
+                          }, [
+                            React.createElement("h3", {
+                              key: "title",
+                              className: "font-playfair text-xl font-semibold text-gray-800 mb-2"
+                            }, milestone.title),
+                            React.createElement("p", {
+                              key: "desc",
+                              className: "text-gray-600 leading-relaxed mb-2"
+                            }, milestone.description),
+                            React.createElement("p", {
+                              key: "date",
+                              className: "text-sm text-pink-600 font-medium"
+                            }, milestone.date)
+                          ]),
+                          React.createElement("div", {
+                            key: "image",
+                            className: "flex-shrink-0"
+                          },
+                            React.createElement("img", {
+                              src: milestone.image,
+                              alt: milestone.title,
+                              className: "w-32 h-24 md:w-48 md:h-32 object-cover rounded-xl shadow-md"
+                            })
+                          )
+                        ])
+                      )
+                    )
+                  ])
+                )
+              )
+            ),
+            React.createElement(motion.div, {
+              key: "qualities",
+              className: "bg-gradient-to-r from-pink-50 to-purple-50 rounded-3xl p-8 mb-16 border border-pink-200/50",
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.6, delay: 0.4 }
+            }, [
+              React.createElement("h2", {
+                key: "title",
+                className: "font-playfair text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8"
+              }, "What Makes Us Special"),
+              React.createElement("div", {
+                key: "grid",
+                className: "grid grid-cols-1 md:grid-cols-2 gap-6"
+              },
+                specialQualities.map((quality, index) =>
+                  React.createElement(motion.div, {
+                    key: index,
+                    className: "h-full shadow-lg border-0 rounded-lg bg-white",
+                    initial: { opacity: 0, y: 20 },
+                    animate: { opacity: 1, y: 0 },
+                    transition: { duration: 0.5, delay: 0.1 * index }
+                  },
+                    React.createElement("div", {
+                      className: "p-6"
+                    }, [
+                      React.createElement("div", {
+                        key: "header",
+                        className: "flex items-center space-x-4 mb-4"
+                      }, [
+                        React.createElement("div", {
+                          key: "icon",
+                          className: "w-10 h-10 romantic-gradient rounded-full flex items-center justify-center"
+                        },
+                          React.createElement(quality.icon, {
+                            className: "w-5 h-5 text-white"
+                          })
+                        ),
+                        React.createElement("h3", {
+                          key: "title",
+                          className: "font-playfair text-lg font-semibold text-gray-800"
+                        }, quality.title)
+                      ]),
+                      React.createElement("p", {
+                        key: "desc",
+                        className: "text-gray-600 leading-relaxed"
+                      }, quality.description)
+                    ])
+                  )
+                )
+              )
+            ]),
+            React.createElement(motion.div, {
+              key: "future",
+              className: "text-center",
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0 },
+              transition: { duration: 0.6, delay: 0.6 }
+            },
+              React.createElement("div", {
+                className: "romantic-gradient text-white shadow-xl border-0 rounded-lg"
+              },
+                React.createElement("div", {
+                  className: "p-8"
+                }, [
+                  React.createElement(Heart, {
+                    key: "icon",
+                    className: "w-12 h-12 mx-auto mb-4 text-white"
+                  }),
+                  React.createElement("h2", {
+                    key: "title",
+                    className: "font-playfair text-2xl sm:text-3xl font-bold mb-6"
+                  }, "Our Future Together"),
+                  React.createElement("p", {
+                    key: "text",
+                    className: "text-lg opacity-90 max-w-3xl mx-auto leading-relaxed"
+                  }, "As we celebrate your birthday today, I'm not just thinking about all the wonderful memories we've already created—I'm excited about all the birthdays yet to come. I can't wait to continue growing with you, building dreams together, and creating a love story that gets more beautiful with each passing year. Here's to forever with you, my love.")
+                ])
+              )
+            )
+          ])
+        );
+      };
+
+      const App = () => {
+        const [currentPage, setCurrentPage] = useState("home");
+
+        const renderPage = () => {
+          switch (currentPage) {
+            case "wishes":
+              return React.createElement(BirthdayWishes);
+            case "about":
+              return React.createElement(AboutUs);
+            default:
+              return React.createElement(Home, { setCurrentPage });
+          }
+        };
+
+        return React.createElement("div", {
+          className: "min-h-screen"
+        }, [
+          React.createElement(Navigation, {
+            key: "nav",
+            currentPage,
+            setCurrentPage
+          }),
+          renderPage(),
+          React.createElement(PhotoLightbox, { key: "lightbox" }),
+          React.createElement(LoveReactionPanel, { key: "reactions" })
+        ]);
+      };
+
+      ReactDOM.render(React.createElement(App), document.getElementById('root'));
+    </script>
+  </body>
+</html>
