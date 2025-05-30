@@ -162,17 +162,31 @@ export default function PhotoLightbox() {
               </>
             )}
 
-            {/* Image */}
-            <motion.img
-              key={currentPhoto.id}
-              src={currentPhoto.src}
-              alt={currentPhoto.alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            />
+            {/* Image or Video */}
+            {currentPhoto.type === "video" ? (
+              <motion.video
+                key={currentPhoto.id}
+                src={currentPhoto.src}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                controls
+                autoPlay
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            ) : (
+              <motion.img
+                key={currentPhoto.id}
+                src={currentPhoto.src}
+                alt={currentPhoto.alt}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
           </div>
         </motion.div>
       )}

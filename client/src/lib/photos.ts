@@ -18,6 +18,7 @@ export interface Photo {
   src: string;
   alt: string;
   category: 'solo' | 'couple' | 'celebration';
+  type?: 'image' | 'video';
 }
 
 export const soloPhotos: Photo[] = [
@@ -25,37 +26,43 @@ export const soloPhotos: Photo[] = [
     id: "solo-1",
     src: soloImage1,
     alt: "Beautiful portrait",
-    category: "solo"
+    category: "solo",
+    type: "image"
   },
   {
     id: "solo-2", 
     src: soloImage2,
     alt: "Elegant portrait",
-    category: "solo"
+    category: "solo",
+    type: "image"
   },
   {
     id: "solo-3",
     src: soloImage3, 
     alt: "Natural beauty portrait",
-    category: "solo"
+    category: "solo",
+    type: "image"
   },
   {
     id: "solo-4",
     src: soloImage4,
     alt: "Radiant smile portrait", 
-    category: "solo"
+    category: "solo",
+    type: "image"
   },
   {
     id: "solo-5",
     src: soloImage5,
     alt: "Gorgeous moment", 
-    category: "solo"
+    category: "solo",
+    type: "image"
   },
   {
     id: "solo-6",
     src: soloImage6,
     alt: "Stunning beauty", 
-    category: "solo"
+    category: "solo",
+    type: "image"
   }
 ];
 
@@ -64,37 +71,43 @@ export const couplePhotos: Photo[] = [
     id: "couple-1",
     src: coupleImage1,
     alt: "Romantic couple moment",
-    category: "couple"
+    category: "couple",
+    type: "image"
   },
   {
     id: "couple-2", 
     src: coupleImage2,
     alt: "Happy couple laughing",
-    category: "couple"
+    category: "couple",
+    type: "image"
   },
   {
     id: "couple-3",
     src: coupleImage3,
     alt: "Intimate couple moment", 
-    category: "couple"
+    category: "couple",
+    type: "image"
   },
   {
     id: "couple-4",
     src: coupleImage4,
     alt: "Couple walking together",
-    category: "couple"
+    category: "couple",
+    type: "image"
   },
   {
     id: "couple-5",
     src: coupleImage5,
     alt: "Tender couple moment",
-    category: "couple"
+    category: "couple",
+    type: "image"
   },
   {
     id: "couple-6",
     src: coupleImage6,
     alt: "Romantic couple embrace",
-    category: "couple"
+    category: "couple",
+    type: "image"
   }
 ];
 

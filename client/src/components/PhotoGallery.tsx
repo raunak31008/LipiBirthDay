@@ -60,6 +60,7 @@ export default function PhotoGallery({
                 alt={photo.alt}
                 onClick={() => onPhotoClick(photo)}
                 aspectRatio={photo.category === "couple" ? "landscape" : "portrait"}
+                type={photo.type}
               />
             </motion.div>
           ))}
