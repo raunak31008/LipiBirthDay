@@ -68,7 +68,7 @@ export const soloPhotos: Photo[] = [
   },
   {
     id: "solo-5",
-    src: soloImage5,
+    src: coupleImage2,
     alt: "Gorgeous moment", 
     category: "solo",
     type: "image"
@@ -77,34 +77,6 @@ export const soloPhotos: Photo[] = [
     id: "solo-6",
     src: soloImage6,
     alt: "Stunning beauty", 
-    category: "solo",
-    type: "image"
-  },
-  {
-    id: "solo-7",
-    src: soloImage7,
-    alt: "Lovely portrait", 
-    category: "solo",
-    type: "image"
-  },
-  {
-    id: "solo-8",
-    src: soloImage8,
-    alt: "Beautiful moment", 
-    category: "solo",
-    type: "image"
-  },
-  {
-    id: "solo-9",
-    src: soloImage9,
-    alt: "Sweet smile", 
-    category: "solo",
-    type: "image"
-  },
-  {
-    id: "solo-10",
-    src: soloImage10,
-    alt: "Charming portrait", 
     category: "solo",
     type: "image"
   },
@@ -123,26 +95,12 @@ export const soloPhotos: Photo[] = [
     type: "image"
   },
   {
-    id: "solo-video-1",
-    src: soloVideo1,
-    alt: "Beautiful video moment",
-    category: "solo",
-    type: "video"
-  },
-  {
     id: "solo-video-2",
     src: soloVideo2,
     alt: "Sweet video",
     category: "solo",
     type: "video"
   },
-  {
-    id: "solo-video-3",
-    src: soloVideo3,
-    alt: "Lovely video moment",
-    category: "solo",
-    type: "video"
-  }
 ];
 
 export const couplePhotos: Photo[] = [
@@ -150,13 +108,6 @@ export const couplePhotos: Photo[] = [
     id: "couple-1",
     src: coupleImage1,
     alt: "Romantic couple moment",
-    category: "couple",
-    type: "image"
-  },
-  {
-    id: "couple-2", 
-    src: coupleImage2,
-    alt: "Happy couple laughing",
     category: "couple",
     type: "image"
   },
@@ -181,64 +132,15 @@ export const couplePhotos: Photo[] = [
     category: "couple",
     type: "image"
   },
-  {
-    id: "couple-6",
-    src: coupleImage6,
-    alt: "Romantic couple embrace",
-    category: "couple",
-    type: "image"
-  },
-  {
-    id: "couple-video-1",
-    src: coupleVideo1,
-    alt: "Beautiful couple video",
-    category: "couple",
-    type: "video"
-  },
-  {
-    id: "couple-video-2",
-    src: coupleVideo2,
-    alt: "Sweet moments together",
-    category: "couple",
-    type: "video"
-  },
-  {
-    id: "couple-video-3",
-    src: coupleVideo3,
-    alt: "Love in motion",
-    category: "couple",
-    type: "video"
-  }
 ];
 
 export const celebrationPhotos: Photo[] = [
   {
-    id: "celebration-1", 
-    src: soloImage9,
-    alt: "Birthday celebration moment",
-    category: "celebration",
-    type: "image"
-  },
-  {
-    id: "celebration-2",
-    src: soloImage10, 
-    alt: "Special birthday moment",
-    category: "celebration",
-    type: "image"
-  },
-  {
-    id: "celebration-3",
-    src: coupleImage1,
-    alt: "Celebrating together",
-    category: "celebration",
-    type: "image"
-  },
-  {
-    id: "celebration-4",
-    src: coupleImage2,
-    alt: "Birthday joy", 
-    category: "celebration",
-    type: "image"
+    id: "solo-video-3",
+    src: soloVideo3,
+    alt: "Lovely video moment",
+    category: "solo",
+    type: "video"
   },
   {
     id: "celebration-video-1",
@@ -246,7 +148,14 @@ export const celebrationPhotos: Photo[] = [
     alt: "Special birthday video moment",
     category: "celebration",
     type: "video"
-  }
+  },
+  {
+    id: "solo-video-1",
+    src: soloVideo1,
+    alt: "Beautiful video moment",
+    category: "solo",
+    type: "video"
+  },
 ];
 
 export const heroPhoto: Photo = {

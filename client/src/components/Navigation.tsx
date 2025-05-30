@@ -26,7 +26,7 @@ export default function Navigation() {
           <Link href="/">
             <div className="font-playfair text-xl font-semibold text-pink-600 flex items-center gap-2 cursor-pointer">
               <Heart className="w-5 h-5" />
-              My Beautiful Love
+              With Love, Lipi
             </div>
           </Link>
 

@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import soloImage1 from "@assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (1).jpeg";
 import coupleImage1 from "@assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg";
 import coupleImage3 from "@assets/WhatsApp Image 2025-05-30 at 5.58.07 PM.jpeg";
+import coupleImage2 from "@assets/WhatsApp Image 2025-05-30 at 5.58.05 PM (1).jpeg";
 
 const loveStoryMilestones = [
   {
@@ -11,7 +12,7 @@ const loveStoryMilestones = [
     title: "The Day We Met",
     description: "I still remember the moment our eyes first met. Time seemed to stop, and I knew in that instant that you were someone special. Your smile was like sunshine breaking through clouds, and your laugh became my favorite sound in the world. That day changed everything for me.",
     date: "The beginning of forever",
-    image: soloImage1
+    image: coupleImage2
   },
   {
     icon: Calendar,
