@@ -5,6 +5,12 @@ import soloImage3 from "@assets/WhatsApp Image 2025-05-30 at 5.57.46 PM.jpeg";
 import soloImage4 from "@assets/WhatsApp Image 2025-05-30 at 5.57.52 PM.jpeg";
 import soloImage5 from "@assets/WhatsApp Image 2025-05-30 at 5.59.53 PM (1).jpeg";
 import soloImage6 from "@assets/WhatsApp Image 2025-05-30 at 5.59.54 PM.jpeg";
+import soloImage7 from "@assets/WhatsApp Image 2025-05-30 at 5.57.43 PM.jpeg";
+import soloImage8 from "@assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (2).jpeg";
+import soloImage9 from "@assets/WhatsApp Image 2025-05-30 at 5.59.46 PM (1).jpeg";
+import soloImage10 from "@assets/WhatsApp Image 2025-05-30 at 5.59.46 PM (2).jpeg";
+import soloImage11 from "@assets/WhatsApp Image 2025-05-30 at 5.59.52 PM.jpeg";
+import soloImage12 from "@assets/04f609b0-44d6-41e2-b07a-0eb55ae21c12.jpeg";
 
 import coupleImage1 from "@assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg";
 import coupleImage2 from "@assets/WhatsApp Image 2025-05-30 at 5.58.05 PM (1).jpeg";
@@ -12,6 +18,14 @@ import coupleImage3 from "@assets/WhatsApp Image 2025-05-30 at 5.58.07 PM.jpeg";
 import coupleImage4 from "@assets/WhatsApp Image 2025-05-30 at 5.58.07 PM (1).jpeg";
 import coupleImage5 from "@assets/WhatsApp Image 2025-05-30 at 5.58.08 PM (1).jpeg";
 import coupleImage6 from "@assets/WhatsApp Image 2025-05-30 at 5.58.09 PM.jpeg";
+
+import soloVideo1 from "@assets/WhatsApp Video 2025-05-30 at 5.57.47 PM.mp4";
+import soloVideo2 from "@assets/WhatsApp Video 2025-05-30 at 5.57.49 PM (1).mp4";
+import soloVideo3 from "@assets/WhatsApp Video 2025-05-30 at 5.57.55 PM.mp4";
+
+import coupleVideo1 from "@assets/WhatsApp Video 2025-05-30 at 5.58.00 PM.mp4";
+import coupleVideo2 from "@assets/WhatsApp Video 2025-05-30 at 5.58.03 PM.mp4";
+import coupleVideo3 from "@assets/WhatsApp Video 2025-05-30 at 5.58.10 PM.mp4";
 
 export interface Photo {
   id: string;
@@ -63,6 +77,69 @@ export const soloPhotos: Photo[] = [
     alt: "Stunning beauty", 
     category: "solo",
     type: "image"
+  },
+  {
+    id: "solo-7",
+    src: soloImage7,
+    alt: "Lovely portrait", 
+    category: "solo",
+    type: "image"
+  },
+  {
+    id: "solo-8",
+    src: soloImage8,
+    alt: "Beautiful moment", 
+    category: "solo",
+    type: "image"
+  },
+  {
+    id: "solo-9",
+    src: soloImage9,
+    alt: "Sweet smile", 
+    category: "solo",
+    type: "image"
+  },
+  {
+    id: "solo-10",
+    src: soloImage10,
+    alt: "Charming portrait", 
+    category: "solo",
+    type: "image"
+  },
+  {
+    id: "solo-11",
+    src: soloImage11,
+    alt: "Radiant beauty", 
+    category: "solo",
+    type: "image"
+  },
+  {
+    id: "solo-12",
+    src: soloImage12,
+    alt: "Perfect moment", 
+    category: "solo",
+    type: "image"
+  },
+  {
+    id: "solo-video-1",
+    src: soloVideo1,
+    alt: "Beautiful video moment",
+    category: "solo",
+    type: "video"
+  },
+  {
+    id: "solo-video-2",
+    src: soloVideo2,
+    alt: "Sweet video",
+    category: "solo",
+    type: "video"
+  },
+  {
+    id: "solo-video-3",
+    src: soloVideo3,
+    alt: "Lovely video moment",
+    category: "solo",
+    type: "video"
   }
 ];
 
@@ -108,33 +185,58 @@ export const couplePhotos: Photo[] = [
     alt: "Romantic couple embrace",
     category: "couple",
     type: "image"
+  },
+  {
+    id: "couple-video-1",
+    src: coupleVideo1,
+    alt: "Beautiful couple video",
+    category: "couple",
+    type: "video"
+  },
+  {
+    id: "couple-video-2",
+    src: coupleVideo2,
+    alt: "Sweet moments together",
+    category: "couple",
+    type: "video"
+  },
+  {
+    id: "couple-video-3",
+    src: coupleVideo3,
+    alt: "Love in motion",
+    category: "couple",
+    type: "video"
   }
 ];
 
 export const celebrationPhotos: Photo[] = [
   {
     id: "celebration-1", 
-    src: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    alt: "Birthday celebration",
-    category: "celebration"
+    src: soloImage9,
+    alt: "Birthday celebration moment",
+    category: "celebration",
+    type: "image"
   },
   {
     id: "celebration-2",
-    src: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600", 
-    alt: "Beautiful birthday cake",
-    category: "celebration"
+    src: soloImage10, 
+    alt: "Special birthday moment",
+    category: "celebration",
+    type: "image"
   },
   {
     id: "celebration-3",
-    src: "https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    alt: "Birthday surprise",
-    category: "celebration"
+    src: coupleImage1,
+    alt: "Celebrating together",
+    category: "celebration",
+    type: "image"
   },
   {
     id: "celebration-4",
-    src: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    alt: "Birthday flowers", 
-    category: "celebration"
+    src: coupleImage2,
+    alt: "Birthday joy", 
+    category: "celebration",
+    type: "image"
   }
 ];
 

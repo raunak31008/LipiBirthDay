@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { Heart, Calendar, Infinity, Laugh, Users, MapPin, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import soloImage1 from "@assets/WhatsApp Image 2025-05-30 at 5.57.44 PM (1).jpeg";
+import coupleImage1 from "@assets/WhatsApp Image 2025-05-30 at 5.58.04 PM (1).jpeg";
+import coupleImage3 from "@assets/WhatsApp Image 2025-05-30 at 5.58.07 PM.jpeg";
 
 const loveStoryMilestones = [
   {
@@ -8,21 +11,21 @@ const loveStoryMilestones = [
     title: "The Day We Met",
     description: "I still remember the moment our eyes first met. Time seemed to stop, and I knew in that instant that you were someone special. Your smile was like sunshine breaking through clouds, and your laugh became my favorite sound in the world. That day changed everything for me.",
     date: "The beginning of forever",
-    image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200"
+    image: soloImage1
   },
   {
     icon: Calendar,
     title: "Our First Date",
     description: "Nervous butterflies, endless conversations, and the realization that I could talk to you for hours and never get bored. That first date was magical—not because of where we went, but because of how comfortable and happy you made me feel. I knew I wanted many more evenings like that one.",
     date: "The night that sealed our fate",
-    image: "https://images.unsplash.com/photo-1542596768-5d1d21f1cf98?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200"
+    image: coupleImage1
   },
   {
     icon: Infinity,
     title: "Becoming Official",
     description: "The moment we decided to make it official was one of the happiest days of my life. No more wondering, no more uncertainty—just the beautiful commitment to explore this incredible connection together. You said yes to being mine, and I've been grateful every day since.",
     date: "The start of our official journey",
-    image: "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200"
+    image: coupleImage3
   }
 ];
 
