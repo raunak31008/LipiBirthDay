@@ -690,7 +690,13 @@
               },
                 React.createElement("button", {
                   className: "romantic-gradient text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 mx-auto",
-                  onClick: () => setCurrentPage("wishes")
+                  onClick: () => {
+                    // Trigger celebration burst when navigating to wishes
+                    triggerEmojiReaction('🎉');
+                    setTimeout(() => triggerEmojiReaction('💖'), 200);
+                    setTimeout(() => triggerEmojiReaction('✨'), 400);
+                    setCurrentPage("wishes");
+                  }
                 }, [
                   "See Your Birthday Wishes",
                   React.createElement(Heart, { key: "heart", className: "w-5 h-5" })
@@ -799,7 +805,13 @@
                   transition: { duration: 0.6, delay: 0.1 * index }
                 },
                   React.createElement("div", {
-                    className: "p-8"
+                    className: "p-8 cursor-pointer",
+                    onClick: () => {
+                      // Create love reaction when clicking on birthday messages
+                      const emojis = ['💖', '💕', '🥰'];
+                      const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                      triggerEmojiReaction(randomEmoji);
+                    }
                   },
                     React.createElement("div", {
                       className: "flex items-start space-x-4"
