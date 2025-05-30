@@ -30,6 +30,15 @@ function Router() {
 }
 
 function App() {
+  useEffect(() => {
+    // Start auto love emojis after 3 seconds
+    const timer = setTimeout(() => {
+      startAutoLoveEmojis();
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -37,6 +46,7 @@ function App() {
           <Navigation />
           <Router />
           <PhotoLightbox />
+          <LoveReactionPanel />
           <Toaster />
         </div>
       </TooltipProvider>
