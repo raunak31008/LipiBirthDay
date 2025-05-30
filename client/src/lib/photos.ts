@@ -27,6 +27,8 @@ import coupleVideo1 from "@assets/WhatsApp Video 2025-05-30 at 5.58.00 PM.mp4";
 import coupleVideo2 from "@assets/WhatsApp Video 2025-05-30 at 5.58.03 PM.mp4";
 import coupleVideo3 from "@assets/WhatsApp Video 2025-05-30 at 5.58.10 PM.mp4";
 
+import celebrationVideo1 from "@assets/WhatsApp Video 2025-05-30 at 5.59.50 PM.mp4";
+
 export interface Photo {
   id: string;
   src: string;
@@ -237,6 +239,13 @@ export const celebrationPhotos: Photo[] = [
     alt: "Birthday joy", 
     category: "celebration",
     type: "image"
+  },
+  {
+    id: "celebration-video-1",
+    src: celebrationVideo1,
+    alt: "Special birthday video moment",
+    category: "celebration",
+    type: "video"
   }
 ];
 
