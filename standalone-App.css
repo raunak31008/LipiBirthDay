@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --romantic-pink: 340 82% 75%;
+  --soft-blush: 340 50% 95%;
+  --warm-white: 340 100% 98%;
+  --deep-pink: 340 82% 52%;
+  --accent-pink: 320 100% 70%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, hsl(var(--warm-white)) 0%, hsl(var(--soft-blush)) 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.romantic-gradient {
+  background: linear-gradient(135deg, hsl(var(--romantic-pink)) 0%, hsl(var(--accent-pink)) 100%);
+}
+
+.photo-hover {
+  transition: all 0.3s ease;
+}
+
+.photo-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.emoji-reaction {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 2rem;
+  user-select: none;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50vh) scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.floating-emoji {
+  animation: floatUp 3s ease-out forwards;
+}
+
+.love-reaction-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 10px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.love-reaction-panel:hover {
+  transform: scale(1.05);
+}
+
+.emoji-button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emoji-button:hover {
+  background: rgba(255, 182, 193, 0.3);
+  transform: scale(1.2);
+}
+
+.emoji-button:active {
+  transform: scale(0.9);
+}
+
+.modal-backdrop {
+  backdrop-filter: blur(10px);
+}
+
+/* Tailwind-like utilities for aspect ratios */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-\[4\/5\] {
+  aspect-ratio: 4 / 5;
+}
+
+.aspect-\[3\/2\] {
+  aspect-ratio: 3 / 2;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out;
+}
+
+.animate-gentle-bounce {
+  animation: gentleBounce 2s ease-in-out infinite;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .love-reaction-panel {
+    bottom: 10px;
+    right: 10px;
+    padding: 8px;
+  }
+  
+  .emoji-button {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
